@@ -1,0 +1,10 @@
+Bu yazılım, tamamen kamu malı (public domain) olarak serbest bırakılmış, ücretsiz ve hiçbir kısıtlamaya tabi olmayan bir yazılımdır.
+
+Geliştirici: TEKNO YAMAN
+Yürürlük Tarihi: 28 Ekim 2026
+
+Herhangi bir kişi; bu yazılımı kaynak kod halinde veya derlenmiş ikili dosya olarak, ticari veya ticari olmayan her türlü amaçla ve herhangi bir yöntemle kopyalamakta, değiştirmekte, yayımlamakta, kullanmakta, derlemekte, satmakta veya dağıtmakta tamamen özgürdür.
+
+Telif hakkı yasalarını tanıyan yargı bölgelerinde; bu yazılımın yazarı veya yazarları, yazılım üzerindeki tüm telif hakkı menfaatlerini kamu malına tahsis eder. Bu tahsisi kamu yararına, mirasçılarımızın ve haleflerimizin zararına olacak şekilde yapıyoruz. Bu tahsisin, telif hakkı yasası kapsamındaki mevcut ve gelecekteki tüm haklarımızdan kalıcı olarak feragat eden açık bir eylem olmasını amaçlıyoruz.
+
+YAZILIM, TİCARETE ELVERİŞLİLİK, BELİRLİ BİR AMACA UYGUNLUK VE İHLAL ETMEME GARANTİLERİ DE DAHİL ANCAK BUNLARLA SINIRLI OLMAMAK ÜZERE, AÇIK VEYA ZIMNİ HİÇBİR GARANTİ OLMAKSIZIN "OLDUĞU GİBİ" SUNULMAKTADIR. HİÇBİR DURUMDA YAZARLAR VEYA GELİŞTİRİCİLER; SÖZLEŞME, HAKSIZ FİİL VEYA BAŞKA BİR NEDENDEN KAYNAKLANAN, YAZILIMLA VEYA YAZILIMIN KULLANIMIYLA İLGİLİ HİÇBİR TALEP, TAZMİNAT VEYA DİĞER YÜKÜMLÜLÜKLERDEN SORUMLU TUTULAMAZ.

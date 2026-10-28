@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <meta http-equiv="Content-Security-Policy" content="default-src 'self'; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com; img-src 'self' data:;">
+    <title>TKALEM - Akıllı Tahta</title>
+    <link rel="icon" href="logo.ico" sizes="any">
+    <link rel="icon" href="logo.png" type="image/png">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <div class="logo">
+        <img src="logo.png" alt="TKALEM Logo">
+    </div>
+    
+    <canvas id="board"></canvas>
+
+    <button class="menu-btn" id="btnMenu" title="Hakkında">
+        <svg viewBox="0 0 24 24"><path d="M4 6h16M4 12h16M4 18h16" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" fill="none"/></svg>
+    </button>
+
+    <div class="toolbar">
+        <div class="toolbar-group">
+            <button class="btn active" id="btnPen" title="Kalem (K)">
+                <svg viewBox="0 0 24 24"><path d="M3 17.25V21h3.75L17.81 9.94l-3.75-3.75L3 17.25zM20.71 7.04c.39-.39.39-1.02 0-1.41l-2.34-2.34c-.39-.39-1.02-.39-1.41 0l-1.83 1.83 3.75 3.75 1.83-1.83z"/></svg>
+            </button>
+            <button class="btn" id="btnHighlighter" title="Fosforlu Kalem (H)">
+                <svg viewBox="0 0 24 24"><path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5zM4 20h16v2H4v-2z" fill="currentColor"/></svg>
+            </button>
+            <button class="btn" id="btnEraser" title="Silgi (S)">
+                <svg viewBox="0 0 24 24"><path d="M15.14 3c-.51 0-1.02.2-1.41.59L2.59 14.73c-.78.77-.78 2.04 0 2.83L5.03 20h7.66l8.72-8.72c.78-.78.78-2.05 0-2.83l-4.86-4.86c-.39-.39-.9-.59-1.41-.59zm-1.41 2L18.6 9.86 16.59 11.88 11.72 7.01 13.73 5zM4 16.14l7-7 4.86 4.86-7 7H4v-4.86z"/></svg>
+            </button>
+            <button class="btn" id="btnBucket" title="Boya Kovası (B)">
+                <svg viewBox="0 0 24 24"><path d="M16.56 8.94L7.62 0 6.21 1.41l2.38 2.38-5.15 5.15c-.59.59-.59 1.54 0 2.12l5.5 5.5c.29.29.68.44 1.06.44s.77-.15 1.06-.44l5.5-5.5c.59-.58.59-1.53 0-2.12zM5.21 10L10 5.21 14.79 10H5.21zM19 11.5s-2 2.17-2 3.5c0 1.1.9 2 2 2s2-.9 2-2c0-1.33-2-3.5-2-3.5z"/></svg>
+            </button>
+            
+            <div class="shapes-dropdown-wrapper">
+                <button class="btn" id="btnShapesToggle" title="Geometrik Şekiller">
+                    <svg id="currentShapeIcon" viewBox="0 0 24 24"><rect x="3" y="3" width="7" height="7" rx="1.5" stroke="currentColor" stroke-width="2" fill="none"/><circle cx="17.5" cy="6.5" r="4" stroke="currentColor" stroke-width="2" fill="none"/><path d="M14 21l3.5-7 3.5 7h-7z" stroke="currentColor" stroke-width="2" fill="none"/></svg>
+                </button>
+                <div class="shapes-menu" id="shapesMenu">
+                    <button class="shape-opt-btn" data-shape="line" title="Düz Çizgi (L)">
+                        <svg viewBox="0 0 24 24"><line x1="4" y1="20" x2="20" y2="4" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"/></svg>
+                    </button>
+                    <button class="shape-opt-btn" data-shape="arrow" title="Ok Çizgisi (A)">
+                        <svg viewBox="0 0 24 24"><line x1="4" y1="20" x2="18" y2="6" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"/><path d="M10 5h9v9" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" fill="none"/></svg>
+                    </button>
+                    <button class="shape-opt-btn" data-shape="rect" title="Dikdörtgen (R)">
+                        <svg viewBox="0 0 24 24"><rect x="3" y="4" width="18" height="16" rx="2" stroke="currentColor" stroke-width="2" fill="none"/></svg>
+                    </button>
+                    <button class="shape-opt-btn" data-shape="circle" title="Çember / Daire (C)">
+                        <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9" stroke="currentColor" stroke-width="2" fill="none"/></svg>
+                    </button>
+                    <button class="shape-opt-btn" data-shape="triangle" title="Üçgen (T)">
+                        <svg viewBox="0 0 24 24"><path d="M12 3l9 17H3L12 3z" stroke="currentColor" stroke-width="2" stroke-linejoin="round" fill="none"/></svg>
+                    </button>
+                    <button class="shape-opt-btn" data-shape="star" title="Yıldız">
+                        <svg viewBox="0 0 24 24"><polygon points="12,2 15,9 22,9 17,14 19,21 12,17 5,21 7,14 2,9 9,9" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round" fill="none"/></svg>
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <div class="toolbar-group thickness-wrapper">
+            <input type="range" id="lineWidth" class="thickness-slider" min="1" max="50" value="5">
+            <div class="thickness-preview">
+                <div class="thickness-dot" id="thicknessDot" style="width: 5px; height: 5px;"></div>
+            </div>
+        </div>
+
+        <div class="toolbar-group" id="colorPalette">
+            <div class="color-btn" style="background: #ffffff;" data-color="#ffffff"></div>
+            <div class="color-btn active" style="background: #000000;" data-color="#000000"></div>
+            <div class="color-btn" style="background: #ef4444;" data-color="#ef4444"></div>
+            <div class="color-btn" style="background: #3b82f6;" data-color="#3b82f6"></div>
+            <div class="color-btn" style="background: #22c55e;" data-color="#22c55e"></div>
+            <div class="color-btn" style="background: #eab308;" data-color="#eab308"></div>
+            <div class="custom-color-wrapper" title="Özel Renk">
+                <input type="color" id="customColor" value="#ff00ff">
+            </div>
+        </div>
+
+        <div class="toolbar-group">
+            <button class="btn" id="btnUndo" title="Geri Al">
+                <svg viewBox="0 0 24 24"><path d="M12.5 8c-2.65 0-5.05.99-6.9 2.6L2 7v9h9l-3.62-3.62c1.39-1.16 3.16-1.88 5.12-1.88 3.54 0 6.55 2.31 7.6 5.5l2.37-.78C20.76 11.03 17.05 8 12.5 8z"/></svg>
+            </button>
+            <button class="btn" id="btnRedo" title="İleri Al">
+                <svg viewBox="0 0 24 24" style="transform: scaleX(-1);"><path d="M12.5 8c-2.65 0-5.05.99-6.9 2.6L2 7v9h9l-3.62-3.62c1.39-1.16 3.16-1.88 5.12-1.88 3.54 0 6.55 2.31 7.6 5.5l2.37-.78C20.76 11.03 17.05 8 12.5 8z"/></svg>
+            </button>
+            <button class="btn" id="btnClear" title="Temizle">
+                <svg viewBox="0 0 24 24"><path d="M6 19c0 1.1.9 2 2 2h8c1.1 0 2-.9 2-2V7H6v12zM19 4h-3.5l-1-1h-5l-1 1H5v2h14V4z"/></svg>
+            </button>
+        </div>
+
+        <div class="toolbar-group">
+            <button class="btn" id="btnTheme" title="Arka Plan Değiştir">
+                <svg viewBox="0 0 24 24"><path d="M12 3c-4.97 0-9 4.03-9 9s4.03 9 9 9 9-4.03 9-9c0-.46-.04-.92-.1-1.36-.98 1.37-2.58 2.26-4.4 2.26-2.98 0-5.4-2.42-5.4-5.4 0-1.81.89-3.42 2.26-4.4-.44-.06-.9-.1-1.36-.1z"/></svg>
+            </button>
+            <div class="custom-color-wrapper" title="Özel Arka Plan Rengi" style="margin: 0 4px;">
+                <input type="color" id="customBgColor" value="#ffffff">
+            </div>
+            <button class="btn" id="btnLines" title="Çizgili Desen">
+                <svg viewBox="0 0 24 24"><path d="M4 6h16M4 12h16M4 18h16" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+            </button>
+            <button class="btn" id="btnGrid" title="Kareli Desen">
+                <svg viewBox="0 0 24 24"><path d="M4 4h16v16H4z" fill="none" stroke="currentColor" stroke-width="2"/><path d="M4 12h16M12 4v16" stroke="currentColor" stroke-width="2"/></svg>
+            </button>
+            <button class="btn" id="btnSave" title="PNG Olarak Kaydet">
+                <svg viewBox="0 0 24 24"><path d="M19 9h-4V3H9v6H5l7 7 7-7zM5 18v2h14v-2H5z"/></svg>
+            </button>
+        </div>
+    </div>
+
+    <div class="modal-overlay" id="clearModal">
+        <div class="modal-content">
+            <div class="modal-title">Tahtayı Temizle</div>
+            <p>Tüm çizimler silinecek. Emin misin?</p>
+            <div class="modal-buttons">
+                <button class="modal-btn btn-cancel" id="btnCancelClear">İptal</button>
+                <button class="modal-btn btn-confirm" id="btnConfirmClear">Temizle</button>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal-overlay" id="aboutModal">
+        <div class="modal-content" style="max-width: 520px; text-align: left;">
+            <div class="modal-title" style="text-align: center;">TKALEM Akıllı Tahta</div>
+            <p style="text-align: center; font-size: 0.95rem;">
+                Sürüm: <strong>1.0</strong> | Geliştirici: <strong>TEKNO YAMAN</strong><br>
+                Lisans: <span style="display: inline-block; background: rgba(34, 197, 94, 0.15); color: #16a34a; font-weight: 600; padding: 1px 8px; border-radius: 999px; font-size: 0.8rem; margin-top: 4px;">Kamu Malı (Public Domain)</span>
+            </p>
+            
+            <div style="margin-top: 15px; font-size: 0.9rem; line-height: 1.6; border-top: 1px solid var(--toolbar-border); padding-top: 12px;">
+                <strong>🎨 Özellikler:</strong>
+                <ul style="margin: 6px 0 12px 20px;">
+                    <li>Geometrik Şekiller (Düz Çizgi, Ok, Dikdörtgen, Çember, Üçgen, Yıldız)</li>
+                    <li>Canlı Şekil Çizim Önizlemesi ve Boya Kovası Aracı</li>
+                    <li>Fosforlu / Vurgulayıcı Kalem Aracı</li>
+                </ul>
+                <strong>⌨️ Hızlı Kısayollar:</strong>
+                <p style="margin-top: 4px; color: #666; font-size: 0.85rem;">
+                    <strong>K</strong>: Kalem | <strong>H</strong>: Fosforlu | <strong>S</strong>: Silgi | <strong>B</strong>: Boya Kovası<br>
+                    <strong>L</strong>: Çizgi | <strong>A</strong>: Ok | <strong>R</strong>: Dikdörtgen | <strong>C</strong>: Çember | <strong>T</strong>: Üçgen<br>
+                    <strong>Shift</strong> basılı tutulduğunda düzgün açı ve kare/daire kilidi aktifleşir.
+                </p>
+            </div>
+
+            <div style="margin-top: 15px; font-size: 0.9rem; border-top: 1px solid var(--toolbar-border); padding-top: 12px;">
+                <div style="display: flex; justify-content: space-between; align-items: center;">
+                    <strong>📜 Lisans Metni:</strong>
+                    <span style="font-size: 0.78rem; opacity: 0.7;">license_tr.txt</span>
+                </div>
+                <div class="license-box">Bu yazılım, tamamen kamu malı (public domain) olarak serbest bırakılmış, ücretsiz ve hiçbir kısıtlamaya tabi olmayan bir yazılımdır.
+
+Geliştirici: TEKNO YAMAN
+Yürürlük Tarihi: 28 Ekim 2026
+
+Herhangi bir kişi; bu yazılımı kaynak kod halinde veya derlenmiş ikili dosya olarak, ticari veya ticari olmayan her türlü amaçla ve herhangi bir yöntemle kopyalamakta, değiştirmekte, yayımlamakta, kullanmakta, derlemekte, satmakta veya dağıtmakta tamamen özgürdür.
+
+Telif hakkı yasalarını tanıyan yargı bölgelerinde; bu yazılımın yazarı veya yazarları, yazılım üzerindeki tüm telif hakkı menfaatlerini kamu malına tahsis eder. Bu tahsisi kamu yararına, mirasçılarımızın ve haleflerimizin zararına olacak şekilde yapıyoruz. Bu tahsisin, telif hakkı yasası kapsamındaki mevcut ve gelecekteki tüm haklarımızdan kalıcı olarak feragat eden açık bir eylem olmasını amaçlıyoruz.
+
+YAZILIM, TİCARETE ELVERİŞLİLİK, BELİRLİ BİR AMACA UYGUNLUK VE İHLAL ETMEME GARANTİLERİ DE DAHİL ANCAK BUNLARLA SINIRLI OLMAMAK ÜZERE, AÇIK VEYA ZIMNİ HİÇBİR GARANTİ OLMAKSIZIN "OLDUĞU GİBİ" SUNULMAKTADIR. HİÇBİR DURUMDA YAZARLAR VEYA GELİŞTİRİCİLER; SÖZLEŞME, HAKSIZ FİİL VEYA BAŞKA BİR NEDENDEN KAYNAKLANAN, YAZILIMLA VEYA YAZILIMIN KULLANIMIYLA İLGİLİ HİÇBİR TALEP, TAZMİNAT VEYA DİĞER YÜKÜMLÜLÜKLERDEN SORUMLU TUTULAMAZ.</div>
+            </div>
+            
+            <div class="modal-buttons">
+                <button class="modal-btn btn-cancel" id="btnCloseAbout" style="width: 100%;">Kapat</button>
+            </div>
+        </div>
+    </div>
+
+    <script src="app.js"></script>
+</body>
+</html>
